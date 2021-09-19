@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -8,6 +8,21 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function Player(props) {
+  useEffect(() => {
+    const newSongs = props.songs.map((song) => {
+      if (song.id === props.currentSong.id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return { ...song, active: false };
+      }
+    });
+
+    props.setSongs(newSongs);
+  }, [props.currentSong]);
+
   //Event Handlers
   function playSongHandler() {
     props.setIsPlaying(!props.isPlaying);
@@ -49,6 +64,17 @@ function Player(props) {
         props.songs[(currentIndex - 1) % props.songs.length]
       );
     }
+
+    //Check if song is playing
+    if (props.isPlaying) {
+      const playPromise = props.audioRef.current.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then((audio) => {
+          props.audioRef.current.play();
+        });
+      }
+    }
   }
 
   return (
@@ -62,7 +88,12 @@ function Player(props) {
           value={props.songInfo.currentTime}
           type="range"
         />
-        <p> {getTime(props.songInfo.duration)} </p>
+        <p>
+          {" "}
+          {props.songInfo.duration
+            ? getTime(props.songInfo.duration)
+            : "0:00"}{" "}
+        </p>
       </div>
       <div className="play-control">
         <FontAwesomeIcon
