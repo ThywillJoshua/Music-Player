@@ -3,12 +3,13 @@ import { v4 as uuidv4 } from "uuid";
 function chillHop() {
   return [
     {
-      name: "Saudade",
+      name: "Baby Mama",
       cover:
-        "https://chillhop.com/wp-content/uploads/2021/07/4163ebb931e06d4ee8eb184295c0246d4a5055f7-1024x1024.jpg",
-      artist: "Juan Rios",
-      audio: "https://mp3.chillhop.com/serve.php/?mp3=21650",
-      color: ["#FEC694", "#9F5F97"],
+        "https://wadupnaija.com/wp-content/uploads/2021/06/Peruzzi-The-Leaktape.jpg",
+      artist: "Peruzzi",
+      audio:
+        "https://wadupnaija.com/wp-content/uploads/2021/06/Peruzzi-Baby-Mama.mp3?_=1",
+      color: ["#7A4C38", "#1A211D"],
       id: uuidv4(),
       active: true,
     },
