@@ -3,6 +3,16 @@ import React from "react";
 function LibrarySong(props) {
   function songSelectHandler() {
     props.setCurrentSong(props.song);
+
+    if (props.isPlaying) {
+      const playPromise = props.audioRef.current.play();
+
+      if (playPromise !== undefined) {
+        playPromise.then((audio) => {
+          props.audioRef.current.play();
+        });
+      }
+    }
   }
 
   return (
