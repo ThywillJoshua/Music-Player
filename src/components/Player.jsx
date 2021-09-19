@@ -77,17 +77,31 @@ function Player(props) {
     }
   }
 
+  //Add animation styles
+  const trackAnim = {
+    transform: `translateX(${props.songInfo.animationPercentage}%)`,
+  };
+
   return (
     <div className="player">
       <div className="time-control">
         <p>{getTime(props.songInfo.currentTime)}</p>
-        <input
-          onChange={dragHandler}
-          min={0}
-          max={props.songInfo.duration || 0}
-          value={props.songInfo.currentTime}
-          type="range"
-        />
+
+        <div
+          style={{
+            background: `linear-gradient(to right, ${props.currentSong.color[0]}, ${props.currentSong.color[1]} )`,
+          }}
+          className="track"
+        >
+          <input
+            onChange={dragHandler}
+            min={0}
+            max={props.songInfo.duration || 0}
+            value={props.songInfo.currentTime}
+            type="range"
+          />
+          <div style={trackAnim} className="animate-track"></div>
+        </div>
         <p>
           {" "}
           {props.songInfo.duration
