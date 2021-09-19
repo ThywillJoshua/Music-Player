@@ -7,7 +7,15 @@ function Library(props) {
       <h2>Library</h2>
       <div className="library-songs">
         {props.songs.map((song) => {
-          return <LibrarySong song={song} />;
+          return (
+            <LibrarySong
+              song={song}
+              songs={props.songs}
+              setCurrentSong={props.setCurrentSong}
+              id={song.id}
+              key={song.id}
+            />
+          );
         })}
       </div>
     </div>
