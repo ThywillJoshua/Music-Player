@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
+  faPause,
   faAngleLeft,
   faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +13,13 @@ function Player(props) {
 
   //Event Handlers
   function playSongHandler() {
-    console.log(audioRef.current);
+    props.setIsPlaying(!props.isPlaying);
+
+    if (props.isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
   }
 
   return (
@@ -28,7 +35,7 @@ function Player(props) {
           onClick={playSongHandler}
           className="play"
           size="2x"
-          icon={faPlay}
+          icon={props.isPlaying === true ? faPause : faPlay}
         />
         <FontAwesomeIcon
           className="skip-forward"

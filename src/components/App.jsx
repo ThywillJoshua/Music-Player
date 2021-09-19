@@ -13,11 +13,16 @@ import chillHop from "./Util";
 function App() {
   const [songs, setSongs] = useState(chillHop());
   const [currentSong, setCurrentSong] = useState(songs[0]);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   return (
     <div>
       <Song currentSong={currentSong} />
-      <Player currentSong={currentSong} />
+      <Player
+        setIsPlaying={setIsPlaying}
+        isPlaying={isPlaying}
+        currentSong={currentSong}
+      />
     </div>
   );
 }
