@@ -24,8 +24,8 @@ function Player(props) {
 
   //State
   const [songInfo, setSongInfo] = useState({
-    currentTime: null,
-    duration: null,
+    currentTime: 0,
+    duration: 0,
   });
 
   function timeUpdateHandler(e) {
